@@ -23,11 +23,11 @@ lw: REWEIGHT_BIAS
 # and here we do the same again, but this time using LOGWEIGHTS.
 # these free energies will be printed on files fes_phi_biased1r.dat and
 # fes_psi_biased1r.dat and will be reweighted so as to be unbiased
-hhphir: ARG=phi STRIDE=100 GRID_MIN=-pi GRID_MAX=pi GRID_BIN=600 BANDWIDTH=0.05 LOGWEIGHTS=lw 
+hhphir: HISTOGRAM ARG=phi STRIDE=100 GRID_MIN=-pi GRID_MAX=pi GRID_BIN=600 BANDWIDTH=0.05 LOGWEIGHTS=lw 
 ffphir: CONVERT_TO_FES GRID=hhphir
 DUMPGRID GRID=ffphir FILE=fes_phi_biased1r.dat STRIDE=200000
 
-hhpsir: ARG=psi STRIDE=100 GRID_MIN=-pi GRID_MAX=pi GRID_BIN=600 BANDWIDTH=0.05 LOGWEIGHTS=lw 
+hhpsir: HISTOGRAM ARG=psi STRIDE=100 GRID_MIN=-pi GRID_MAX=pi GRID_BIN=600 BANDWIDTH=0.05 LOGWEIGHTS=lw 
 ffpsir: CONVERT_TO_FES GRID=hhpsir
 DUMPGRID GRID=ffpsir FILE=fes_psi_biased1r.dat STRIDE=200000
 
