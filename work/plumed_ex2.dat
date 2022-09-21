@@ -1,5 +1,5 @@
 # vim:ft=plumed
-MOLINFO STRUCTURE=../reference.pdb
+MOLINFO STRUCTURE=../data/reference.pdb
 phi: TORSION ATOMS=@phi-2
 psi: TORSION ATOMS=@psi-2
 
