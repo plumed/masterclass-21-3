@@ -1,7 +1,7 @@
 # vim:ft=plumed
-phi: READ FILE=bias_wham.dat VALUES=phi
-psi: READ FILE=bias_wham.dat VALUES=psi
-lw: READ FILE=bias_wham.dat VALUES=lw
+phi: READ FILE=work/bias_wham.dat VALUES=phi
+psi: READ FILE=work/bias_wham.dat VALUES=psi
+lw: READ FILE=work/bias_wham.dat VALUES=lw
 
 hhphi: HISTOGRAM ARG=phi GRID_MIN=-pi GRID_MAX=pi GRID_BIN=600 BANDWIDTH=0.05
 ffphi: CONVERT_TO_FES GRID=hhphi

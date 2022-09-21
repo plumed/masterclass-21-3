@@ -444,7 +444,7 @@ Now you should write a python script that generate 32 plumed input files (you ca
 that look like this one
 
 ```plumed
-SOLUTIONFILE=work/plumed_ex5.dat
+#SOLUTIONFILE=work/plumed_ex5.dat
 # vim:ft=plumed
 MOLINFO STRUCTURE=reference.pdb
 phi: TORSION ATOMS=__FILL__
