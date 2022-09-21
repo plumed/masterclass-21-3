@@ -196,11 +196,11 @@ lw: REWEIGHT_BIAS
 # and here we do the same again, but this time using LOGWEIGHTS.
 # these free energies will be printed on files fes_phi_biased1r.dat and 
 # fes_psi_biased1r.dat and will be reweighted so as to be unbiased
-hhphir: __FILL__ LOGWEIGHTS=lw
+hhphir: HISTOGRAM __FILL__ LOGWEIGHTS=lw
 ffphir: __FILL__
 DUMPGRID FILE=fes_phi_biased1r.dat __FILL__
 
-hhpsir: __FILL__ LOGWEIGHTS=lw
+hhpsir: HISTOGRAM __FILL__ LOGWEIGHTS=lw
 ffpsir: __FILL__
 DUMPGRID FILE=fes_psi_biased1r.dat __FILL__
 
