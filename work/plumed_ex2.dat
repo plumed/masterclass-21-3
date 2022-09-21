@@ -13,10 +13,10 @@ BIASVALUE ARG=f
 # the previous exercise. let's just write the results on different files
 hhphi: HISTOGRAM ARG=phi STRIDE=100 GRID_MIN=-pi GRID_MAX=pi GRID_BIN=600 BANDWIDTH=0.05
 ffphi: CONVERT_TO_FES GRID=hhphi
-DUMPGRID FILE=fes_phi_biased1.dat STRIDE=200000
+DUMPGRID GRID=ffphi FILE=fes_phi_biased1.dat STRIDE=200000
 hhpsi: HISTOGRAM ARG=psi STRIDE=100 GRID_MIN=-pi GRID_MAX=pi GRID_BIN=600 BANDWIDTH=0.05
 ffpsi: CONVERT_TO_FES GRID=hhpsi
-DUMPGRID FILE=fes_psi_biased1.dat STRIDE=200000
+DUMPGRID GRID=ffpsi FILE=fes_psi_biased1.dat STRIDE=200000
 
 lw: REWEIGHT_BIAS
 
@@ -25,10 +25,10 @@ lw: REWEIGHT_BIAS
 # fes_psi_biased1r.dat and will be reweighted so as to be unbiased
 hhphir: ARG=phi STRIDE=100 GRID_MIN=-pi GRID_MAX=pi GRID_BIN=600 BANDWIDTH=0.05 LOGWEIGHTS=lw 
 ffphir: CONVERT_TO_FES GRID=hhphir
-DUMPGRID FILE=fes_phi_biased1r.dat STRIDE=200000
+DUMPGRID GRID=ffphir FILE=fes_phi_biased1r.dat STRIDE=200000
 
 hhpsir: ARG=psi STRIDE=100 GRID_MIN=-pi GRID_MAX=pi GRID_BIN=600 BANDWIDTH=0.05 LOGWEIGHTS=lw 
 ffpsir: CONVERT_TO_FES GRID=hhpsir
-DUMPGRID FILE=fes_psi_biased1r.dat STRIDE=200000
+DUMPGRID GRID=ffpsir FILE=fes_psi_biased1r.dat STRIDE=200000
 
 PRINT ARG=phi,psi STRIDE=100 FILE=plumed_colvar1.dat # monitor what's happening, as before, writing on file plumed_colvar1.dat

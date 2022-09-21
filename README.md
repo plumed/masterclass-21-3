@@ -438,7 +438,7 @@ We will use 32 simulations, with `RESTRAINT` potentials centered at uniformly sp
 import numpy as np
 at=np.linspace(-np.pi,np.pi,32,endpoint=False)
 print(at)
-```§
+```
 
 Now you should write a python script that generate 32 plumed input files (you can call them `plumed_0.dat`, `plumed_1.dat`, etc)
 that look like this one
