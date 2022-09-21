@@ -1,0 +1,11 @@
+# vim:ft=plumed 
+MOLINFO STRUCTURE=reference.pdb
+phi: TORSION ATOMS=@phi-2
+psi: TORSION ATOMS=@psi-2
+
+# here we list the bias potentials that we used in the three simulations we want to combine
+b0: CUSTOM ARG=phi FUNC=0.0 PERIODIC=NO 
+b1: CUSTOM ARG=phi FUNC=-10*sin(x+2) PERIODIC=NO # fill here with the bias you used in the first biased simulation
+b2: CUSTOM ARG=phi FUNC=-20*sin(x+2) PERIODIC=NO # fill here with the bias you used in the second biased simulation
+PRINT ARG=phi,psi,b0,b1,b2 FILE=biases.dat
+

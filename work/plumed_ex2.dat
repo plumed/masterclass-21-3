@@ -1,0 +1,34 @@
+# vim:ft=plumed
+MOLINFO STRUCTURE=../data/reference.pdb
+phi: TORSION ATOMS=@phi-2
+psi: TORSION ATOMS=@psi-2
+
+# fill in with the required function (i.e. -10*sin(phi+2)):
+f: CUSTOM ARG=phi FUNC=-10*sin(x+2) PERIODIC=NO 
+
+# this command allows to add a bias potential equal to f
+BIASVALUE ARG=f
+
+# here you can paste the same HISTOGRAM/CONVERT_TO_FES/DUMPGRID commands that you used in
+# the previous exercise. let's just write the results on different files
+hhphi: HISTOGRAM ARG=phi STRIDE=100 GRID_MIN=-pi GRID_MAX=pi GRID_BIN=600 BANDWIDTH=0.05
+ffphi: CONVERT_TO_FES GRID=hhphi
+DUMPGRID FILE=fes_phi_biased1.dat STRIDE=200000
+hhpsi: HISTOGRAM ARG=psi STRIDE=100 GRID_MIN=-pi GRID_MAX=pi GRID_BIN=600 BANDWIDTH=0.05
+ffpsi: CONVERT_TO_FES GRID=hhpsi
+DUMPGRID FILE=fes_psi_biased1.dat STRIDE=200000
+
+lw: REWEIGHT_BIAS
+
+# and here we do the same again, but this time using LOGWEIGHTS.
+# these free energies will be printed on files fes_phi_biased1r.dat and
+# fes_psi_biased1r.dat and will be reweighted so as to be unbiased
+hhphir: ARG=phi STRIDE=100 GRID_MIN=-pi GRID_MAX=pi GRID_BIN=600 BANDWIDTH=0.05 LOGWEIGHTS=lw 
+ffphir: CONVERT_TO_FES GRID=hhphir
+DUMPGRID FILE=fes_phi_biased1r.dat STRIDE=200000
+
+hhpsir: ARG=psi STRIDE=100 GRID_MIN=-pi GRID_MAX=pi GRID_BIN=600 BANDWIDTH=0.05 LOGWEIGHTS=lw 
+ffpsir: CONVERT_TO_FES GRID=hhpsir
+DUMPGRID FILE=fes_psi_biased1r.dat STRIDE=200000
+
+PRINT ARG=phi,psi STRIDE=100 FILE=plumed_colvar1.dat # monitor what's happening, as before, writing on file plumed_colvar1.dat

@@ -1,0 +1,19 @@
+# vim:ft=plumed
+MOLINFO STRUCTURE=../data/reference.pdb
+phi: TORSION ATOMS=@phi-2 # use MOLINFO shortcuts to identify the phi angle of the second residue
+psi: TORSION ATOMS=@psi-2 # use MOLINFO shortcuts to identify the psi angle of the second residue
+
+# use the command below to compute the histogram of phi
+# we use a smooth kernel to produce a nicer graph here
+# notice that when asking for numbers PLUMED is happy to accept strings such as "pi" meaning 3.14...
+# also arithmetics is allowed (e.g. 2*pi could be used if necessary)
+hhphi: HISTOGRAM ARG=phi STRIDE=100 GRID_MIN=-pi GRID_MAX=pi GRID_BIN=600 BANDWIDTH=0.05
+ffphi: CONVERT_TO_FES GRID=hhphi # no need to set TEMP here, PLUMED will obtain it from GROMACS
+DUMPGRID GRID=ffphi FILE=fes_phi.dat STRIDE=200000 # stride is needed here since PLUMED does not know when the simulation is over
+
+# now add three more lines to compute and dump the free energy as a function of **psi** on a file names fes_psi.dat
+hhpsi: HISTOGRAM ARG=psi STRIDE=100 GRID_MIN=-pi GRID_MAX=pi GRID_BIN=600 BANDWIDTH=0.05
+ffpsi: CONVERT_TO_FES GRID=hhpsi 
+DUMPGRID GRID=ffpsi FILE=fes_psi.dat STRIDE=200000
+
+PRINT ARG=phi,psi STRIDE=100 # use this command to write phi and psi on a file named colvar.dat, every 100 steps

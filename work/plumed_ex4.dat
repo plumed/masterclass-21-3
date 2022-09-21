@@ -1,0 +1,21 @@
+# vim:ft=plumed
+phi: READ FILE=bias_wham.dat VALUES=phi
+psi: READ FILE=bias_wham.dat VALUES=psi
+lw: READ FILE=bias_wham.dat VALUES=lw
+
+hhphi: HISTOGRAM ARG=phi GRID_MIN=-pi GRID_MAX=pi GRID_BIN=600 BANDWIDTH=0.05
+ffphi: CONVERT_TO_FES GRID=hhphi
+DUMPGRID GRID=ffphi FILE=fes_phi_cat.dat
+
+hhpsi: HISTOGRAM ARG=psi GRID_MIN=-pi GRID_MAX=pi GRID_BIN=600 BANDWIDTH=0.05
+ffpsi: CONVERT_TO_FES GRID=hhpsi
+DUMPGRID GRID=ffpsi FILE=fes_psi_cat.dat
+
+# we use a smooth kernel to produce a nicer graph here
+hhphir: HISTOGRAM ARG=phi GRID_MIN=-pi GRID_MAX=pi GRID_BIN=600 BANDWIDTH=0.05 LOGWEIGHTS=lw
+ffphir: CONVERT_TO_FES GRID=hhphir
+DUMPGRID GRID=ffphir FILE=fes_phi_catr.dat
+
+hhpsir: HISTOGRAM ARG=psi GRID_MIN=-pi GRID_MAX=pi GRID_BIN=600 BANDWIDTH=0.05 LOGWEIGHTS=lw
+ffpsir: CONVERT_TO_FES GRID=hhpsir
+DUMPGRID GRID=ffpsir FILE=fes_psi_catr.dat
