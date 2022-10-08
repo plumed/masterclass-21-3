@@ -1,0 +1,10 @@
+video1: 
+  title: Lecture I
+  location: https://www.youtube.com/embed/gHXXGYIgasE
+video2:
+  title: Lecture II
+  location: https://www.youtube.com/embed/SuHcOYqIOrY
+ref1: 
+  location: 21/001
+ref2:
+  location: 21/002
