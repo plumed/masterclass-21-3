@@ -6,5 +6,7 @@ video2:
   location: https://www.youtube.com/embed/SuHcOYqIOrY
 ref1: 
   location: 21/001
+  type: internal
 ref2:
   location: 21/002
+  type: internal
