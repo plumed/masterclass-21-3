@@ -11,7 +11,7 @@ The flow chart shown below indicates the order in which you should consult the r
 This lesson was the third masterclass in the 2021 series.  You will likely be able to complete the exercise without completing all the exercises in the first two masterclasses in the series.  However, the first masterclass contains instructions for installing PLUMED using conda that you may need to consult if you have not installed it already.  Meanwhile, the second masterclass contains more of the theory behind the block averaging methods that you will be using to complete the exercises here.
 
 ```mermaid
-flowchart LR;
+flowchart TB;
   A[PLUMED intro] -.-> C[Lecture I] 
   B[Block averaging theory] -.-> C
   C ==> D[Instructions];
@@ -22,5 +22,5 @@ flowchart LR;
   click C "video1" "A lecture that was given on February 15th 2021 as part of the plumed masterclass series that introduces you to the exercises in this lesson"
   click D "INSTRUCTIONS.md" "The instructions for the exercises";
   click E "video2" "A lecture that was given on February 22nd 2021 as part of the plumed masterclass series that goes through the solutions to the exercises in the lesson"
-  click F "Solution.ipynb" "A python notebook that contains a full set of solutions to the exercises that are discussed in the masterclass.  This notebook is the one that was editted during the section video lecture of the masterclass" 
+  click F "Solution.ipynb" "A python notebook that contains a full set of solutions to the exercises that are discussed in the masterclass.  This notebook is the one that was editted during the section video lecture of the masterclass"
 ```
